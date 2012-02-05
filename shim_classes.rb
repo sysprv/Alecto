@@ -15,7 +15,7 @@ module ShimUtil
             if idx.nil? then
                 return false
             end
-            lastidx = idx
+            lastidx = idx + 1
         end
 
         return true
@@ -29,7 +29,7 @@ class ShimRequest
         @request_method = sinatra_request.request_method
         @query_string = sinatra_request.query_string
         @path_info = sinatra_request.path_info
-        @body = if @request_method == 'POST' and sinatra_request.content_length > '0' then
+        @body = if @request_method.upcase == 'POST' and sinatra_request.content_length > '0' then
             sinatra_request.body.read
         else
             nil
