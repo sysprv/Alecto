@@ -1,4 +1,5 @@
 #! jruby
+# vim:set ts=8 sts=4 sw=4 ai et:
 
 module ShimUtil
     # A utility method to check of a set of strings are present in
