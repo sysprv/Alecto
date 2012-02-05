@@ -64,7 +64,10 @@ class Resolver
     include ShimUtil
 
     def initialize
-        # list of matchers
+        # list of matchers.
+        # TODO - matchers should implement java.util.concurrent.Callable,
+        # so they can be put onto a threadpool.
+        # They should also have a rule number/description.
         @matchers = []
 
         # a matcher that won't match anything
