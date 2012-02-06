@@ -10,7 +10,7 @@ class Shim < Sinatra::Base
         'Hello World!'
     end
 
-    post '/shim/run' do
+    post '/shim/run/*' do
         resolver = Resolver.new
         shimresponse = resolver.resolve(request)
 
