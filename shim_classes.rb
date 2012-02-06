@@ -20,6 +20,55 @@ module ShimUtil
 
         return true
     end
+    
+    # Load simple rules from a text file, and generate lambdas
+    def make_matchers
+        matchers = []
+
+        json_str = open('rules.json', 'r:UTF-8') do |r|
+            r.read
+        end
+
+        return [] if not json_str or json_str.length < 2
+
+        obj = Hashie::Mash.new(JSON.parse(json_str))
+        obj.rules.each do |rule|
+            # some simple checks
+            if rule.nil? then
+                $stderr.puts "ERROR: null rule"
+                next
+            end
+
+            if rule.number.nil? or rule.description.nil? then
+                $stderr.puts "ERROR: rule must have a number and a description"
+                next
+            end
+
+            rulename = rule.number.to_s + ' (' + rule.description + ')'
+
+            if rule.strings.length < 1 then
+                $stderr.puts "ERROR: Rule #{rulename} does not define any words to check for"
+                next
+            end
+            if not File.exists?(rule.response) then
+                $stderr.puts "WARNING: Response file #{rule.response} used by rule #{rulename} not on disk (yet)"
+            end
+
+            matcher = lambda do |shimreq|
+                # TODO: rule.number, rule.description should be embedded.
+                if contains_in_order(shimreq.body, *rule.strings) then
+                    return MatchResult.new(true, ShimResponse.new(200,
+                        { 'Content-Type' => 'application/xml;charset=UTF-8' },
+                        open(rule.response).read))
+                end
+            end
+
+            matchers << matcher
+        end
+
+        # return
+        matchers
+    end
 end
 
 class ShimRequest
@@ -68,25 +117,17 @@ class Resolver
         # TODO - matchers should implement java.util.concurrent.Callable,
         # so they can be put onto a threadpool.
         # They should also have a rule number/description.
-        @matchers = []
+        @matchers = make_matchers
 
         # a matcher that won't match anything
         @matchers << lambda do |shimreq|
             MatchResult.new(false, ShimResponse.new(200, { 'X-Foo' => 'Bar' }, 'Quux'))
         end
-
-        @matchers << lambda do |shimreq|
-            body = shimreq.body
-            p body
-            if contains_in_order(body, "GetGameInformationRequest") then
-                return MatchResult.new(true, ShimResponse.new(200, nil, "GetGameInformationResponse"))
-            end
-        end
     end
 
     def resolve(request)
         req = ShimRequest.new(request)
-        resp = ShimResponse.new(500, nil, 'No matchers for request')
+        resp = ShimResponse.new(500, { 'Content-Type' => 'text/plain;charset=UTF-8' }, 'No matchers for request')
         
         # go through each function, and return the response from the first one that matches.
         @matchers.each do |matcher|
