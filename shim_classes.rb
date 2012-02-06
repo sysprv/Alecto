@@ -20,7 +20,33 @@ module ShimUtil
 
         return true
     end
-    
+
+
+    def valid_json_rulespec(rule)
+        if rule.nil? then
+            $stderr.puts "ERROR: null rule"
+            return false
+        end
+
+        if rule.number.nil? or rule.description.nil? then
+            $stderr.puts "ERROR: rule must have a number and a description"
+            return false
+        end
+
+        if rule.strings.length < 1 then
+            $stderr.puts "ERROR: Rule #{rule.number}/#{rule.description} does not define any words to check for"
+            return false
+        end
+
+        if not File.exists?(rule.response) then
+            $stderr.puts "WARNING: Response file #{rule.response} used by rule #{rule.number}/#{rule.description} not on disk (yet)"
+            # return true
+        end
+
+        return true
+    end
+
+
     # Load simple rules from a text file, and generate lambdas
     def make_matchers
         matchers = []
@@ -34,25 +60,7 @@ module ShimUtil
         obj = Hashie::Mash.new(JSON.parse(json_str))
         obj.rules.each do |rule|
             # some simple checks
-            if rule.nil? then
-                $stderr.puts "ERROR: null rule"
-                next
-            end
-
-            if rule.number.nil? or rule.description.nil? then
-                $stderr.puts "ERROR: rule must have a number and a description"
-                next
-            end
-
-            rulename = rule.number.to_s + ' (' + rule.description + ')'
-
-            if rule.strings.length < 1 then
-                $stderr.puts "ERROR: Rule #{rulename} does not define any words to check for"
-                next
-            end
-            if not File.exists?(rule.response) then
-                $stderr.puts "WARNING: Response file #{rule.response} used by rule #{rulename} not on disk (yet)"
-            end
+            next if not valid_json_rulespec(rule)
 
             matcher = lambda do |shimreq|
                 # TODO: rule.number, rule.description should be embedded.
@@ -65,11 +73,11 @@ module ShimUtil
 
             matchers << matcher
         end
-
         # return
         matchers
     end
 end
+
 
 class ShimRequest
     attr_reader :request_method, :query_string, :path_info, :body
@@ -85,6 +93,7 @@ class ShimRequest
         end
     end
 end
+
 
 class ShimResponse
     # status -> int
