@@ -1,20 +1,25 @@
 {
-    "vim_modeline": " vim: set ts=8 sts=4 sw=4 et ai ft=javascript:",
     "rules": [
         {
             "number": 1,
-            "description": "GetGameInformation Langoddsen test",
-            "strings": [ "GameInformationRequest", "GameNo>12</", "NoOfBetObjects>117</" ],
+            "description": "Rule number one",
+            "strings": [ "xml", "uid", "gid" ],
             "content_type": "application/xml;charset=UTF-8",
-            "file": "responses/sample-langoddsen.xml"
+            "response": "<noxmltoday/>"
         },
         {
-            "number": 5,
-            "description": "Passthrough test",
-            "path_info": "/GetCustomerProfile_TesteLykken_5.3/servlet/GetCustomerProfileServlet",
+            "number": 2,
+            "description": "Rule the second",
+            "strings": [ "foo", "bar", "baz" ],
+            "content_type": "application/xml;charset=UTF-8",
+            "file": "/etc/baz"
+        },
+        {
+            "number": 3,
+            "description": "The Third Rule",
+            "path_info": "/v1/customer",
             "strings": [ "default" ],
-            "service": "http://s1jis001.norsk-tipping.no:7080/GetCustomerProfile_TesteLykken_5.3/servlet/GetCustomerProfileServlet",
-            "content_type": "application/xml"
+            "service": "http://host3.example.com/open/v1/customer"
         }
-   ]
+    ]
 }

@@ -1,4 +1,4 @@
-// vim:set ts=8 sts=8 sw=8 noet ai ff=unix:
+// vim:set ts=8 sts=2 sw=2 noet ai ff=unix:
 
 A Sinatra + JRuby app to mock simple http services.
 
@@ -43,4 +43,42 @@ comparison.
 Combined with "default", "path_info" can be used to set up a real
 service to serve most requests, leaving us free to intercept the
 (hopefully few) requests we are interested in.
+
+
+Rules
+
+Are loaded from the file "rules.json" in the current directory.
+
+Example:
+
+{
+    "rules": [
+        {
+            "number": 1,
+            "description": "Rule number one",
+            "strings": [ "xml", "uid", "gid" ],
+            "content_type": "application/xml;charset=UTF-8",
+            "response": "<noxmltoday/>"
+        },
+        {
+            "number": 2,
+            "description": "Rule the second",
+            "strings": [ "foo", "bar", "baz" ],
+            "content_type": "application/xml;charset=UTF-8",
+            "file": "/etc/baz"
+        },
+        {
+            "number": 3,
+            "description": "The Third Rule",
+            "path_info": "/v1/customer",
+            "strings": [ "default" ],
+            "service": "http://host3.example.com/open/v1/customer"
+        }
+    ]
+}
+
+
+For now, this file is loaded at each request to Alecto. Rule changes
+come into effect at the beginning of each request, without requiring
+restarting Alecto. This behaviour may or may not change in the future.
 
