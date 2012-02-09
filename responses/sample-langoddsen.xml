@@ -1,0 +1,946 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns1:GameInformationResponse ns1:Version="1.16" OperationVersion="3.20.0-SNAPSHOT" xmlns:ns1="http://norsk-tipping.no/betobject/GameInformation">
+    <ns1:Result>
+        <ns1:ResultCode>0</ns1:ResultCode>
+        <ns1:ResultDescription>OK</ns1:ResultDescription>
+    </ns1:Result>
+    <ns1:Game>
+        <ns1:GameNo>12</ns1:GameNo>
+        <ns1:GameObject>
+            <ns1:GameName>LANGODDSEN</ns1:GameName>
+            <ns1:GameStartDate>1994-02-01+01:00</ns1:GameStartDate>
+            <ns1:GameStatusNo>1</ns1:GameStatusNo>
+            <ns1:GameStatusName>Open</ns1:GameStatusName>
+        </ns1:GameObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T19:55:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>SITTARD - MVV MAA</ns1:EventName>
+                <ns1:MatchPrn>293662</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>100</ns1:EventNo>
+                <ns1:ArrangementId>10498</ns1:ArrangementId>
+                <ns1:ArrangementName>NEDERLANDSK 1. DIVISJON 11/12</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T20:00:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>752</ns1:EventItemId>
+                    <ns1:EventItemName>Fortuna Sittard</ns1:EventItemName>
+                    <ns1:EventItemShortName>SITTARD</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>SIT</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>931</ns1:EventItemId>
+                    <ns1:EventItemName>MVV Maastricht</ns1:EventItemName>
+                    <ns1:EventItemShortName>MVV MAA</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>MAA</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>1</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>2</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>3</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:10:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>1860 MUN - COTTBUS</ns1:EventName>
+                <ns1:MatchPrn>293566</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>101</ns1:EventNo>
+                <ns1:ArrangementId>10401</ns1:ArrangementId>
+                <ns1:ArrangementName>TYSK 2. BUNDESLIGA 2011/12</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T20:15:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>440</ns1:EventItemId>
+                    <ns1:EventItemName>TSV 1860 München</ns1:EventItemName>
+                    <ns1:EventItemShortName>1860 MUN</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>MUN</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>915</ns1:EventItemId>
+                    <ns1:EventItemName>Energie Cottbus</ns1:EventItemName>
+                    <ns1:EventItemShortName>COTTBUS</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>COT</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>true</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>4</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>1.65</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>5</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>3.15</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>6</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>3.95</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:RestrictionEventNo>102</ns1:RestrictionEventNo>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:10:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>1860 MU - COT 0-1</ns1:EventName>
+                <ns1:MatchPrn>293797</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>102</ns1:EventNo>
+                <ns1:ArrangementId>8542</ns1:ArrangementId>
+                <ns1:ArrangementName>HANDIKAPSPILL TYSK 2. BUNDESLI</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T20:15:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>108</ns1:EventItemId>
+                    <ns1:EventItemName>TSV 1860 M?nchen</ns1:EventItemName>
+                    <ns1:EventItemShortName>1860 MU</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>MUN</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>12584</ns1:EventItemId>
+                    <ns1:EventItemName>Energie Cottbus (0-1)</ns1:EventItemName>
+                    <ns1:EventItemShortName>COT 0-1</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>COT</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>7</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>2.85</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>8</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>3.5</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>9</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>1.85</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:RestrictionEventNo>101</ns1:RestrictionEventNo>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:25:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>LE MANS - NANTES</ns1:EventName>
+                <ns1:MatchPrn>293633</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>103</ns1:EventNo>
+                <ns1:ArrangementId>10459</ns1:ArrangementId>
+                <ns1:ArrangementName>FRANSK LIGUE 2 2011/12</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T20:30:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>2972</ns1:EventItemId>
+                    <ns1:EventItemName>Le Mans FC</ns1:EventItemName>
+                    <ns1:EventItemShortName>LE MANS</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>MAN</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>196</ns1:EventItemId>
+                    <ns1:EventItemName>Nantes</ns1:EventItemName>
+                    <ns1:EventItemShortName>NANTES</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>NAN</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>10</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>1.8</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>11</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>2.7</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>12</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>3.6</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:RestrictionEventNo>104</ns1:RestrictionEventNo>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:25:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>LE MANS - NAN 0-1</ns1:EventName>
+                <ns1:MatchPrn>293930</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>104</ns1:EventNo>
+                <ns1:ArrangementId>9461</ns1:ArrangementId>
+                <ns1:ArrangementName>HANDICAPSPILL FRANSK LIGUE 2</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T20:30:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>2972</ns1:EventItemId>
+                    <ns1:EventItemName>Le Mans FC</ns1:EventItemName>
+                    <ns1:EventItemShortName>LE MANS</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>MAN</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>13417</ns1:EventItemId>
+                    <ns1:EventItemName>Nantes (0-1)</ns1:EventItemName>
+                    <ns1:EventItemShortName>NAN 0-1</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>NAN</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>13</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>3.3</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>14</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>3.3</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>15</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>1.55</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:RestrictionEventNo>103</ns1:RestrictionEventNo>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:40:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>NUNEATO - GUISELE</ns1:EventName>
+                <ns1:MatchPrn>293931</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>105</ns1:EventNo>
+                <ns1:ArrangementId>8112</ns1:ArrangementId>
+                <ns1:ArrangementName>CONFERENCE LEAGUE NORD</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T20:45:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>4449</ns1:EventItemId>
+                    <ns1:EventItemName>Nuneaton Town</ns1:EventItemName>
+                    <ns1:EventItemShortName>NUNEATO</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>NUN</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>26386</ns1:EventItemId>
+                    <ns1:EventItemName>Guiseley AFC</ns1:EventItemName>
+                    <ns1:EventItemShortName>GUISELE</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>GUI</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>16</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>17</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>18</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:40:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>BOREHAM - SALISBU</ns1:EventName>
+                <ns1:MatchPrn>293631</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>106</ns1:EventNo>
+                <ns1:ArrangementId>8113</ns1:ArrangementId>
+                <ns1:ArrangementName>CONFERENCE LEAGUE S?R</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T20:45:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>27043</ns1:EventItemId>
+                    <ns1:EventItemName>Boreham Wood</ns1:EventItemName>
+                    <ns1:EventItemShortName>BOREHAM</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>BOR</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>12474</ns1:EventItemId>
+                    <ns1:EventItemName>Salisbury City</ns1:EventItemName>
+                    <ns1:EventItemShortName>SALISBU</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>SAL</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>19</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>20</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>21</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:55:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>LIVERPO - TOTTENH</ns1:EventName>
+                <ns1:MatchPrn>293254</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>107</ns1:EventNo>
+                <ns1:ArrangementId>10460</ns1:ArrangementId>
+                <ns1:ArrangementName>ENGELSK PREMIER LEAGUE 11/12</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T21:00:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>14</ns1:EventItemId>
+                    <ns1:EventItemName>Liverpool</ns1:EventItemName>
+                    <ns1:EventItemShortName>LIVERPO</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>LIV</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>42</ns1:EventItemId>
+                    <ns1:EventItemName>Tottenham</ns1:EventItemName>
+                    <ns1:EventItemShortName>TOTTENH</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>TOT</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>true</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>22</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>2.05</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>23</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>3.15</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>24</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>3.25</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:RestrictionEventNo>108</ns1:RestrictionEventNo>
+                <ns1:RestrictionEventNo>109</ns1:RestrictionEventNo>
+                <ns1:RestrictionEventNo>110</ns1:RestrictionEventNo>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:55:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>LIVERPO - TOT 0-1</ns1:EventName>
+                <ns1:MatchPrn>293752</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>108</ns1:EventNo>
+                <ns1:ArrangementId>10518</ns1:ArrangementId>
+                <ns1:ArrangementName>HANDIKAPSPILL, PREMIER LEAGUE</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T21:00:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>14</ns1:EventItemId>
+                    <ns1:EventItemName>Liverpool</ns1:EventItemName>
+                    <ns1:EventItemShortName>LIVERPO</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>LIV</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>12324</ns1:EventItemId>
+                    <ns1:EventItemName>Tottenham (0-1)</ns1:EventItemName>
+                    <ns1:EventItemShortName>TOT 0-1</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>TOT</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>25</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>3.8</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>26</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>3.7</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>27</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>1.55</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:RestrictionEventNo>107</ns1:RestrictionEventNo>
+                <ns1:RestrictionEventNo>109</ns1:RestrictionEventNo>
+                <ns1:RestrictionEventNo>110</ns1:RestrictionEventNo>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:55:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>LIV-TOT - PAUSE</ns1:EventName>
+                <ns1:MatchPrn>293804</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>109</ns1:EventNo>
+                <ns1:ArrangementId>7673</ns1:ArrangementId>
+                <ns1:ArrangementName>HUB TIL PAUSE, ENGLAND</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T21:00:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>24148</ns1:EventItemId>
+                    <ns1:EventItemName>Liverpool - Tottenham</ns1:EventItemName>
+                    <ns1:EventItemShortName>LIV-TOT</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>LIV</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>12235</ns1:EventItemId>
+                    <ns1:EventItemName>(pause)</ns1:EventItemName>
+                    <ns1:EventItemShortName>PAUSE</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>PAU</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>28</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>2.65</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>29</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>1.9</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>30</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>3.7</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:RestrictionEventNo>107</ns1:RestrictionEventNo>
+                <ns1:RestrictionEventNo>108</ns1:RestrictionEventNo>
+                <ns1:RestrictionEventNo>110</ns1:RestrictionEventNo>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:55:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>LIV-TOT - O/U 2,5</ns1:EventName>
+                <ns1:MatchPrn>293801</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>110</ns1:EventNo>
+                <ns1:ArrangementId>7672</ns1:ArrangementId>
+                <ns1:ArrangementName>OVER/UNDER, ENGLAND</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T21:00:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>24148</ns1:EventItemId>
+                    <ns1:EventItemName>Liverpool - Tottenham</ns1:EventItemName>
+                    <ns1:EventItemShortName>LIV-TOT</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>LIV</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>12134</ns1:EventItemId>
+                    <ns1:EventItemName>over/under 2,5 m?l</ns1:EventItemName>
+                    <ns1:EventItemShortName>O/U 2,5</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>OU2</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>31</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>1.8</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>32</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>1.6</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:RestrictionEventNo>107</ns1:RestrictionEventNo>
+                <ns1:RestrictionEventNo>108</ns1:RestrictionEventNo>
+                <ns1:RestrictionEventNo>109</ns1:RestrictionEventNo>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:55:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>GRANADA - MALAGA</ns1:EventName>
+                <ns1:MatchPrn>293288</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>111</ns1:EventNo>
+                <ns1:ArrangementId>10556</ns1:ArrangementId>
+                <ns1:ArrangementName>SPANSK PRIMERA 2011/2012</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T21:00:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>3208</ns1:EventItemId>
+                    <ns1:EventItemName>Granada</ns1:EventItemName>
+                    <ns1:EventItemShortName>GRANADA</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>GRA</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>2132</ns1:EventItemId>
+                    <ns1:EventItemName>Malaga</ns1:EventItemName>
+                    <ns1:EventItemShortName>MALAGA</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>MAL</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>true</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>33</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>2.7</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>34</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>2.85</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>35</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>2.2</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:RestrictionEventNo>112</ns1:RestrictionEventNo>
+                <ns1:RestrictionEventNo>113</ns1:RestrictionEventNo>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:55:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>GRA-MLG - PAUSE</ns1:EventName>
+                <ns1:MatchPrn>293928</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>112</ns1:EventNo>
+                <ns1:ArrangementId>8032</ns1:ArrangementId>
+                <ns1:ArrangementName>HUB VED PAUSE, SPANIA</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T21:00:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>29521</ns1:EventItemId>
+                    <ns1:EventItemName>Granada - Malaga</ns1:EventItemName>
+                    <ns1:EventItemShortName>GRA-MLG</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>GRA</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>12235</ns1:EventItemId>
+                    <ns1:EventItemName>(pause)</ns1:EventItemName>
+                    <ns1:EventItemShortName>PAUSE</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>PAU</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>36</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>3.4</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>37</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>1.95</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>38</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>2.7</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:RestrictionEventNo>111</ns1:RestrictionEventNo>
+                <ns1:RestrictionEventNo>113</ns1:RestrictionEventNo>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:55:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>GRA-MLG - O/U 2,5</ns1:EventName>
+                <ns1:MatchPrn>293929</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>113</ns1:EventNo>
+                <ns1:ArrangementId>8033</ns1:ArrangementId>
+                <ns1:ArrangementName>OVER/UNDER ANTALL M?L, SPANIA</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T21:00:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>29521</ns1:EventItemId>
+                    <ns1:EventItemName>Granada - Malaga</ns1:EventItemName>
+                    <ns1:EventItemShortName>GRA-MLG</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>GRA</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>12134</ns1:EventItemId>
+                    <ns1:EventItemName>over/under 2,5 m?l</ns1:EventItemName>
+                    <ns1:EventItemShortName>O/U 2,5</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>OU2</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>39</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>1.9</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>40</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>1.55</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:RestrictionEventNo>111</ns1:RestrictionEventNo>
+                <ns1:RestrictionEventNo>112</ns1:RestrictionEventNo>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T20:55:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>BRESCIA - TORINO</ns1:EventName>
+                <ns1:MatchPrn>293675</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>114</ns1:EventNo>
+                <ns1:ArrangementId>10601</ns1:ArrangementId>
+                <ns1:ArrangementName>ITALIENSK SERIE B 2011/12</ns1:ArrangementName>
+                <ns1:SportName>FOTBALL</ns1:SportName>
+                <ns1:EventTime>2012-02-06T21:00:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>473</ns1:EventItemId>
+                    <ns1:EventItemName>Brescia</ns1:EventItemName>
+                    <ns1:EventItemShortName>BRESCIA</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>BRE</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>34</ns1:EventItemId>
+                    <ns1:EventItemName>Torino</ns1:EventItemName>
+                    <ns1:EventItemShortName>TORINO</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>TOR</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>41</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>2.4</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>42</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>2.4</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>43</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>2.4</ns1:SelectionOdds>
+                </ns1:Selection>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T23:45:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>ANAHEIM - CALGARY</ns1:EventName>
+                <ns1:MatchPrn>293712</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>115</ns1:EventNo>
+                <ns1:ArrangementId>10600</ns1:ArrangementId>
+                <ns1:ArrangementName>NATIONAL HOCKEY LEAGUE 2011/12</ns1:ArrangementName>
+                <ns1:SportName>ISHOCKEY</ns1:SportName>
+                <ns1:EventTime>2012-02-06T23:50:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>607</ns1:EventItemId>
+                    <ns1:EventItemName>Anaheim Ducks</ns1:EventItemName>
+                    <ns1:EventItemShortName>ANAHEIM</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>ANA</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>601</ns1:EventItemId>
+                    <ns1:EventItemName>Calgary Flames</ns1:EventItemName>
+                    <ns1:EventItemShortName>CALGARY</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>CAL</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>44</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>45</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>46</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T23:45:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>TORONTO - EDMONTO</ns1:EventName>
+                <ns1:MatchPrn>293710</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>116</ns1:EventNo>
+                <ns1:ArrangementId>10600</ns1:ArrangementId>
+                <ns1:ArrangementName>NATIONAL HOCKEY LEAGUE 2011/12</ns1:ArrangementName>
+                <ns1:SportName>ISHOCKEY</ns1:SportName>
+                <ns1:EventTime>2012-02-06T23:50:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>584</ns1:EventItemId>
+                    <ns1:EventItemName>Toronto Maple Leafs</ns1:EventItemName>
+                    <ns1:EventItemShortName>TORONTO</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>TOR</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>587</ns1:EventItemId>
+                    <ns1:EventItemName>Edmonton Oilers</ns1:EventItemName>
+                    <ns1:EventItemShortName>EDMONTO</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>EDM</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>47</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>48</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>49</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+            </ns1:Event>
+        </ns1:BetObject>
+        <ns1:BetObject>
+            <ns1:GameInstanceNo>1817</ns1:GameInstanceNo>
+            <ns1:SaleStartTime>2012-02-05T00:00:00.000+01:00</ns1:SaleStartTime>
+            <ns1:SaleStopTime>2012-02-06T23:45:00.000+01:00</ns1:SaleStopTime>
+            <ns1:SaleStatusNo>1</ns1:SaleStatusNo>
+            <ns1:SaleStatusName>Open</ns1:SaleStatusName>
+            <ns1:Finalized>false</ns1:Finalized>
+            <ns1:ProgramNo>1817</ns1:ProgramNo>
+            <ns1:Event>
+                <ns1:EventName>PHOENIX - DETROIT</ns1:EventName>
+                <ns1:MatchPrn>293711</ns1:MatchPrn>
+                <ns1:MatchStatusNo>1</ns1:MatchStatusNo>
+                <ns1:MatchStatusName>Ikke startet</ns1:MatchStatusName>
+                <ns1:EventNo>117</ns1:EventNo>
+                <ns1:ArrangementId>10600</ns1:ArrangementId>
+                <ns1:ArrangementName>NATIONAL HOCKEY LEAGUE 2011/12</ns1:ArrangementName>
+                <ns1:SportName>ISHOCKEY</ns1:SportName>
+                <ns1:EventTime>2012-02-06T23:50:00.000+01:00</ns1:EventTime>
+                <ns1:Publish>true</ns1:Publish>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>1</ns1:EventItemNo>
+                    <ns1:EventItemId>854</ns1:EventItemId>
+                    <ns1:EventItemName>Phoenix Coyotes</ns1:EventItemName>
+                    <ns1:EventItemShortName>PHOENIX</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>PHO</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:EventItem>
+                    <ns1:EventItemNo>2</ns1:EventItemNo>
+                    <ns1:EventItemId>585</ns1:EventItemId>
+                    <ns1:EventItemName>Detroit Red Wings</ns1:EventItemName>
+                    <ns1:EventItemShortName>DETROIT</ns1:EventItemShortName>
+                    <ns1:EventItemAbbreviation>DET</ns1:EventItemAbbreviation>
+                </ns1:EventItem>
+                <ns1:Single>false</ns1:Single>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>50</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>H</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>51</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>U</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+                <ns1:Selection>
+                    <ns1:SelectionSeqNo>52</ns1:SelectionSeqNo>
+                    <ns1:SelectionName>B</ns1:SelectionName>
+                    <ns1:SelectionOdds>0</ns1:SelectionOdds>
+                </ns1:Selection>
+            </ns1:Event>
+        </ns1:BetObject>
+    </ns1:Game>
+</ns1:GameInformationResponse>
