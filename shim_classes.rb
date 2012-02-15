@@ -12,19 +12,29 @@ module ShimUtil
     # another string (where), in the order they are given to the
     # method.
     def contains_in_order(where, *what)
-        return nil if where.nil?
-        return nil if what.length < 1
+        ret = nil
+        return ret if where.nil?
+        return ret if what.length < 1
 
         lastidx = 0
         what.each do |str|
-            idx = where.index(str, lastidx)
+            needle = if str.start_with?("file:") then
+                open(str[5, str.length - 1]).read.strip
+            else
+                str
+            end
+
+            idx = where.index(needle, lastidx)
             if idx.nil? then
-                return false
+                ret = false
+                break
+            else
+                ret = true
             end
             lastidx = idx + 1
         end
 
-        return true
+        return ret
     end
 
     # TODO: use Apache HttpClient
@@ -120,7 +130,8 @@ module ShimUtil
     def make_matchers
         matchers = []
 
-        json_str = open('rules.json', 'r:UTF-8') do |r|
+        return matchers if not ENV['RULES.JSON']
+        json_str = open(ENV['RULES.JSON'], 'r:UTF-8') do |r|
             r.read
         end
 
@@ -140,7 +151,7 @@ module ShimUtil
                 end
 
                 if contains_in_order(shimreq.body, *rule.strings) or
-                    rule.strings.length > 0 and rule.strings[0].downcase == 'default' then
+                    ( rule.strings.length > 0 and rule.strings[0].downcase == 'default' ) then
                     process_shim_request(rule, shimreq)
                 end
             end
