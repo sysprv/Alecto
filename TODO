@@ -1,0 +1,3 @@
+Write servlet in JRuby, embed in Jetty.
+Background thread to check config files for changes
+and reload.

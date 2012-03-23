@@ -1,0 +1,19 @@
+{
+    "vim_modeline": " vim: set ts=8 sts=4 sw=4 et ai ft=javascript:",
+    "rules": [
+        {
+            "number": 9,
+            "description": "GetGameInformation, game 12",
+            "strings": [ "file:test/12.xml" ],
+            "file": "test/12-response.xml",
+            "content_type": "application/xml;charset=UTF-8"
+        },
+        {
+            "number": 10,
+            "description": "Default - Sportsspill GetGameInformation",
+            "path_info": "/GetGameInformation/servlet/GetGameInformationServlet",
+            "strings": [ "default" ],
+            "service": "http://d1jis008.norsk-tipping.no:21880/GetGameInformation/servlet/GetGameInformationServlet"
+        }
+   ]
+}

@@ -130,8 +130,8 @@ module ShimUtil
     def make_matchers
         matchers = []
 
-        return matchers if not ENV['RULES.JSON']
-        json_str = open(ENV['RULES.JSON'], 'r:UTF-8') do |r|
+        return matchers if not ENV['ALECTORULES']
+        json_str = open(ENV['ALECTORULES'], 'r:UTF-8') do |r|
             r.read
         end
 
@@ -172,7 +172,7 @@ class ShimRequest
         @request_method = sinatra_request.request_method
         @query_string = sinatra_request.query_string
         @path_info = sinatra_request.path_info
-        @body = if @request_method.upcase == 'POST' and sinatra_request.content_length > '0' then
+        @body = if @request_method.upcase == 'POST' and sinatra_request.content_length and sinatra_request.content_length > '0' then
             sinatra_request.body.read
         else
             nil
