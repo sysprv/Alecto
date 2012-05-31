@@ -1,0 +1,6 @@
+{
+	"number": 0,
+	"description": "Test rule 0",
+	"strings": [ "1", "2" ],
+	"response": "Match at rule 0\r\n"
+}

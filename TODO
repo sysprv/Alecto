@@ -1,3 +1,4 @@
-Write servlet in JRuby, embed in Jetty.
-Background thread to check config files for changes
-and reload.
+Requires lots of cleanup, verification that running in Sinatra
+still works (recent work only used Jetty).
+
+Better documentation about rules, including writing rules in Ruby.

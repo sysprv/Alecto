@@ -1,0 +1,10 @@
+#! /bin/bash
+
+CLASSPATH=.
+for jar in ../jars/*.jar; do
+	CLASSPATH=$CLASSPATH:$jar
+done
+
+export CLASSPATH
+
+jruby --client -J-DVERBOSE=true -J-DDEBUG=true shim_jetty.rb

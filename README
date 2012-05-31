@@ -16,6 +16,13 @@ in the request entity (POST body).
 Special case: If the list has only item, the string "default", this
 is taken to mean a positive match.
 
+rule:
+	content_encoding	# ('UTF-8')
+	content_type		# (MIME - 'application/json; charset=$content_encoding')
+	response		# string
+	file			# file, opened with $content_encoding
+	service | tunnel	# tunnel to backend
+
 Response data for a given request may be provided directly in the
 JSON, if specified as the value of a key named "response".
 
