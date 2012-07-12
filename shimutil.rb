@@ -62,22 +62,22 @@ module ShimUtil
             return false
         end
 
-        if rule.number.nil? or rule.description.nil? then
+        if rule['number'].nil? or rule['description'].nil? then
             $stderr.puts "ERROR: rule must have a number and a description"
             return false
         end
 
-        if rule.strings.length < 1 then
+        if rule['strings'].length < 1 then
             $stderr.puts "ERROR: Rule #{rule.number}/#{rule.description} does not define any words to check for"
             return false
         end
 
         if rule.key?('response') then
-            return false if rule.response.class != String
-            return false if rule.response.length < 1
+            return false if rule['response'].class != String
+            return false if rule['response'].length < 1
         elsif rule.key?('file') then
-            if not File.exists?(rule.file) then
-                $stderr.puts "WARNING: Response file #{rule.response} used by rule #{rule.number}/#{rule.description} not on disk (yet)"
+            if not File.exists?(rule['file']) then
+                $stderr.puts "WARNING: Response file #{rule['response']} used by rule #{rule['number']}/#{rule['description']} not on disk (yet)"
                 # return true
             end
         elsif rule.key?('service') then
@@ -94,15 +94,15 @@ module ShimUtil
         ret_headers = {}
         ret_code = 500
         if rule['response'] then
-            ret_data = rule.response
-            ret_headers['Content-Type'] = rule.content_type;
+            ret_data = rule['response']
+            ret_headers['Content-Type'] = rule['content_type'];
             ret_code = 200
         elsif rule['file'] then
-            ret_data = open(rule.file, 'r:UTF-8').read
-            ret_headers['Content-Type'] = rule.content_type;
+            ret_data = open(rule.file, 'r:UTF-8').read()
+            ret_headers['Content-Type'] = rule['content_type'];
             ret_code = 200
         elsif rule['service'] then
-            ret_code, ret_data, http_resp = *passthrough({}, shimreq.body, rule.service)
+            ret_code, ret_data, http_resp = *passthrough({}, shimreq.body, rule['service'])
             tmp = http_resp.to_hash
             # now tmp is like:
             # {"server"=>["Sun GlassFish Enterprise Server v2.1 Patch02"],
@@ -134,8 +134,8 @@ module ShimUtil
 
         return [] if not json_str or json_str.length < 2
 
-        obj = Hashie::Mash.new(JSON.parse(json_str))
-        obj.rules.each do |rule|
+        obj = JSON.parse(json_str)
+        obj['rules'].each do |rule|
             # some simple checks
             next if not valid_json_rulespec(rule)
 
@@ -148,7 +148,7 @@ module ShimUtil
                 end
 
                 if contains_in_order(shimreq.body, *rule.strings) or
-                    ( rule.strings.length > 0 and rule.strings[0].downcase == 'default' ) then
+                    ( rule['strings'].length > 0 and rule['strings'][0].downcase == 'default' ) then
                     process_shim_request(rule, shimreq)
                 end
             end

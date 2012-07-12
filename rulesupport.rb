@@ -1,5 +1,6 @@
 # vim:set ts=8 sts=4 sw=4 et ai:
 
+require 'java'
 require 'base64'
 require 'matchresult'
 require 'shimresponse'
@@ -32,44 +33,44 @@ module RuleSupport
         ret_headers = {}
         ret_code = 500
 
-        content_encoding = if defined?(rule.content_encoding) then
-            rule.content_encoding
+        content_encoding = if rule.has_key?('content_encoding') then
+            rule['content_encoding']
         else
             'UTF-8'
         end
 
-        content_type = if defined?(rule.content_type) then
-            rule.content_type
+        content_type = if defined?(rule['content_type']) then
+            rule['content_type']
         else
             'application/xml; charset=' + content_encoding
         end
 
         if rule['response'] then
-            if rule.response.class == String then
-                ret_data = rule.response
-            elsif rule.response.class == Array then
-                ret_data = rule.response.join('')
+            if rule['response'].class == String then
+                ret_data = rule['response']
+            elsif rule['response'].class == Array then
+                ret_data = rule['response'].join('')
             end
 
             ret_headers['Content-Type'] = content_type
             ret_code = 200
         elsif rule['file'] then
             begin
-                ret_data = open(rule.file, 'r:' + content_encoding).read
+                ret_data = open(rule['file'], 'r:' + content_encoding).read()
                 ret_headers['Content-Type'] = content_type
                 ret_code = 200
             rescue Exception => e
                 ret_code = 500
-                ret_data = ""
+                ret_data = e.to_s + "\r\n\r\n" + e.backtrace.join("\n") + "\r\n"
                 ret_headers['X-Alecto-Error'] = e.message
                 # TODO: handle error
                 STDERR.puts e
             end
         elsif rule['response_base64'] then
-            _ret = if rule.response.class == String then
-                rule.response
-            elsif rule.response.class == Array then
-                rule.response.join('')
+            _ret = if rule['response'].class == String then
+                rule['response']
+            elsif rule['response'].class == Array then
+                rule['response'].join('')
             end
             ret_data = Base64.decode64(_ret)
             ret_headers['Content-Type'] = content_type
@@ -138,8 +139,8 @@ module RuleSupport
     def rule_from_json(rule, rule_str)
         # Make a lambda that can apply this rule to a shim request.
         # Rule is passed in as a mash object (hashie/mash).
-        rn = rule.number
-        rd = rule.description
+        rn = rule['number']
+        rd = rule['description']
         rs = rule_str
         # Should return a ShimResponse.
         rule_lambda = lambda do |shimreq|
@@ -156,10 +157,10 @@ module RuleSupport
                 return ret
             end
 
-            if rule['path_info'] and shimreq.path_info.end_with?(rule.path_info) then
+            if rule['path_info'] and shimreq.path_info.end_with?(rule['path_info']) then
                 shimresp = process_shim_request(rule, shimreq)
                 ret = MatchResult.new(true, shimresp, rn, rd, rs)
-            elsif rule['strings'] and contains_in_order(shimreq.body, *rule.strings) then
+            elsif rule['strings'] and contains_in_order(shimreq.body, *(rule['strings'])) then
                 shimresp = process_shim_request(rule, shimreq)
                 ret = MatchResult.new(true, shimresp, rn, rd, rs)
             end

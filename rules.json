@@ -1,0 +1,11 @@
+{
+    "vim": " vim:set ts=8 sts=4 sw=4 et ai:",
+    "rules": [
+        {
+            "number": 0,
+            "description": "Rule the 0th",
+            "strings": [ "a", "b", "c" ],
+            "file": "resolver.rb"
+        }
+    ]
+}

@@ -3,10 +3,10 @@
 require 'pp'
 require 'java'
 # require './lib/slf4j-api-1.6.4.jar'
-require './lib/slf4j-simple-1.6.4.jar'
+require ENV['HOME'] + '/jars/slf4j-simple-1.6.4.jar'
 # require './lib/logback-core-1.0.3.jar'
-require './lib/servlet-api-3.0.jar'
-require './lib/jetty-all-8.1.3.v20120416.jar'
+require ENV['HOME'] + '/jars/servlet-api-3.0.jar'
+require ENV['HOME'] + '/jars/jetty-all-8.1.3.v20120416.jar'
 java_import 'org.eclipse.jetty.server.Server'
 java_import 'org.eclipse.jetty.server.handler.AbstractHandler'
 java_import 'org.eclipse.jetty.server.handler.ResourceHandler'
@@ -21,6 +21,8 @@ require 'samplerequests'
 require 'ruleloader'
 
 class ShimHandler < org.eclipse.jetty.server.handler.AbstractHandler
+    @@logger = Java::OrgSlf4j::LoggerFactory::getLogger(ShimHandler.name)
+
     def set_servlet_response(status_code, content_encoding, headers, body, servlet_response)
         servlet_response.setStatus(status_code)
         headers.each do |k, v|
@@ -37,7 +39,7 @@ class ShimHandler < org.eclipse.jetty.server.handler.AbstractHandler
         if not body_s.nil? then
             servlet_response.getOutputStream.write(body_s.to_java_bytes)
         else
-            $stderr.puts "null body, not writing"
+            @@logger.error("null body, not writing")
         end
     end
 
@@ -51,6 +53,20 @@ class ShimHandler < org.eclipse.jetty.server.handler.AbstractHandler
         end
     end
 
+    def buffered_body_from_servlet_request(servlet_req)
+        if servlet_req.getMethod().upcase() == 'POST' then
+            req_content_length = servlet_req.getContentLength()
+            if req_content_length.nil? then
+                @@logger.warning('No content length set in POST request')
+            end
+
+            io = servlet_req.getInputStream().to_io()
+            io.read()
+        else
+            nil
+        end
+    end
+
     def handle(target, req, servlet_req, servlet_resp)
         method = servlet_req.getMethod().upcase()
         path_info = servlet_req.getPathInfo()
@@ -59,19 +75,7 @@ class ShimHandler < org.eclipse.jetty.server.handler.AbstractHandler
             req_char_encoding = 'UTF-8'
         end
 
-        if method == 'POST' then
-            req_content_length = servlet_req.getContentLength()
-            if req_content_length.nil? then
-                $stderr.puts 'No content length set'
-            end
-
-            io = servlet_req.getInputStream().to_io()
-            request_body = io.read
-        else
-            request_body = nil
-        end
-
-        # decide
+            # decide
         status_code, content_encoding, headers, body = \
         *if method == 'GET' and path_info == '/shim/rules' then
             [ 200,
@@ -89,6 +93,7 @@ class ShimHandler < org.eclipse.jetty.server.handler.AbstractHandler
               {},
               Rules.instance.delete(string_remainder(path_info, '/shim/rules/')) ]
         elsif method == 'POST' and path_info.start_with?('/shim/run/') then
+            request_body = buffered_body_from_servlet_request(servlet_req)
             shimreq = ShimRequest.fromServletRequest(servlet_req, request_body)
             shimresp = Resolver.resolve(shimreq)
             [ shimresp.status, shimresp.content_encoding, shimresp.headers, shimresp.body ]
@@ -111,10 +116,12 @@ class ShimHandler < org.eclipse.jetty.server.handler.AbstractHandler
     end
 end
 
+logger = Java::OrgSlf4j::LoggerFactory::getLogger('main')
 
 RuleLoader.instance.start_monitoring
 
 # For logging
+logger.info('Creating Jetty access logger')
 ncsa_log_handler = NCSARequestLog.new('jetty-yyyy_mm_dd.request.log')
 ncsa_log_handler.retain_days = 7;
 ncsa_log_handler.append = true;
@@ -125,6 +132,7 @@ request_log_handler = RequestLogHandler.new
 request_log_handler.request_log = ncsa_log_handler
 
 # For serving things from the filesystem
+logger.info('Creating Jetty resource handler for static files')
 resource_handler = ResourceHandler.new
 resource_handler.setDirectoriesListed(true)
 resource_handler.setWelcomeFiles([ 'index.html', 'default.htm', 'index.htm' ].to_java(:string))
@@ -133,7 +141,10 @@ resource_handler.setResourceBase('../content')
 handlers = HandlerList.new
 handlers.setHandlers([ request_log_handler, resource_handler, ShimHandler.new ])
 
+logger.info('Creating Jetty server instance')
 server = Server.new(4567)
 server.handler = handlers
+logger.info('Starting server')
 server.start
+logger.info('Waiting for Jetty to exit')
 server.join

@@ -2,3 +2,7 @@ Requires lots of cleanup, verification that running in Sinatra
 still works (recent work only used Jetty).
 
 Better documentation about rules, including writing rules in Ruby.
+
+Consider using com.sun.net.httpserver.* instead of Jetty.
+
+Probably - cache response data

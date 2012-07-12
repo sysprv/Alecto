@@ -1,3 +1,5 @@
+# vim:set ts=8 sts=4 sw=4 et ai:
+
 class MatchResult
     attr_reader :matched, :shim_response, :rule_number, :rule_description, :rule_source
 

@@ -7,4 +7,6 @@ done
 
 export CLASSPATH
 
-jruby --client -J-DVERBOSE=true -J-DDEBUG=true shim_jetty.rb
+export ALECTORULES=rules.json
+
+jruby --client -J-Dorg.eclipse.jetty.http.LEVEL=DEBUG shim_jetty.rb

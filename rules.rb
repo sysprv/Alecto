@@ -1,22 +1,24 @@
 # vim:set ts=8 sts=4 sw=4 et ai:
 #
 
+require 'java'
 require 'singleton'
 require 'rulesupport'
-require 'java'
 require 'rubygems'
 require 'json'
-require 'hashie/mash'
 require 'pp'
 
 class Rules
     include Singleton
     include RuleSupport
 
+    @@logger = Java::OrgSlf4j::LoggerFactory::getLogger(Rules.name)
+
     def initialize
         @rules_lock = java.lang.Object.new # .synchronized only works with Java objects.
         @rules = {} # not an array, but a hash, where the key is the rule number.
         @rules_source = {} # for storing the source code of the rule
+        @@logger.info("Rules singleton initialized")
     end
 
     # TODO: batch update - many rules in one request.
@@ -26,24 +28,24 @@ class Rules
         end
 
         json_hash = JSON.parse(str)
-        rulesspec = Hashie::Mash.new(json_hash)
+        rulesspec = json_hash
         if not rulesspec['rules'] then
             raise 'Rules are not valid - no "rules" element found'
         end
 
-        rulesspec.rules.each do |rulespec|
+        rulesspec['rules'].each do |rulespec|
             valid, reason = *valid_json_rulespec(rulespec)
             if not valid then
-                STDERR.puts "Invalid rulespec: " + JSON.generate(rulespec)
+                @@logger.error("Invalid rulespec: {}", JSON.generate(rulespec))
                 raise 'Invalid rule found: ' + reason
             end
         end
 
-        rulesspec.rules.each do |rulespec|
+        rulesspec['rules'].each do |rulespec|
             rule = rule_from_json(rulespec, JSON.generate(rulespec))
             @rules_lock.synchronized do
-                @rules[rulespec.number] = rule
-                @rules_source[rulespec.number] = JSON.generate(rulespec)
+                @rules[rulespec['number']] = rule
+                @rules_source[rulespec['number']] = JSON.generate(rulespec)
             end
         end
 
@@ -56,7 +58,7 @@ class Rules
         end
 
         json_hash = JSON.parse(str)
-        rulespec = Hashie::Mash.new(json_hash)
+        rulespec = json_hash
 
         # all that went well...
         valid, reason = *valid_json_rulespec(rulespec)
@@ -67,8 +69,8 @@ class Rules
         rule = rule_from_json(rulespec, str)
 
         @rules_lock.synchronized do
-            @rules[rulespec.number] = rule
-            @rules_source[rulespec.number] = json_hash # storing the structure, not the
+            @rules[rulespec['number']] = rule
+            @rules_source[rulespec['number']] = json_hash # storing the structure, not the
                 # real source (str).
         end
 

@@ -20,7 +20,7 @@ class ShimRequest
     def ShimRequest.fromSinatraRequest(sinatra_request)
         body = if sinatra_request.request_method.upcase == 'POST' and
             defined?(sinatra_request.content_length) and sinatra_request.content_length > '0' then
-            sinatra_request.body.read
+            sinatra_request.body.read()
         else
             nil
         end
