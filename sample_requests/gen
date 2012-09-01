@@ -1,0 +1,12 @@
+#! /bin/bash
+
+for (( i = 0; i < 10; i++ )); do
+	cat <<EOF > $i.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+  <number>
+    <integer>$i</integer>
+  </number>
+</data>
+EOF
+done

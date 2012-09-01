@@ -4,6 +4,12 @@ require 'java'
 require 'thread'
 require 'rules'
 
+# This class works as a bridge, for loading rules specified
+# in a "rules.json" file into the app.
+#
+# Keeps polling rules.json for changes, and when the file is
+# detected as modified, loads the rules in the file, using
+# the Rules object (rules.rb).
 class RuleLoader
     include Singleton
 
@@ -54,8 +60,8 @@ class RuleLoader
                 begin
                     Rules.instance.add_or_update_batch(str)
                 rescue Exception => e
-                    STDERR.puts(e)
-                    @@logger.error("Ruby exception while loading rules", e)
+                    stacktrace = e.message + "\n\n" + e.backtrace.join("\n") + "\n"
+                    @@logger.error("Ruby exception while loading rules: {}", stacktrace)
                 rescue java.lang.Exception => e
                     @@logger.error("Java exception while loading rules", e)
                 end

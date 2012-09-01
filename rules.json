@@ -5,7 +5,50 @@
             "number": 0,
             "description": "Rule the 0th",
             "strings": [ "a", "b", "c" ],
-            "file": "resolver.rb"
+            "content_type": "text/plain; charset=US-ASCII",
+            "response": "abc\r\n"
+        },
+        {
+            "number": 1,
+            "description": "Test query strings",
+            "query_strings": [ "a", "c=d", "e" ],
+            "response": "The query string contained a, c=d, and e\r\n"
+        },
+        {
+            "number": 5,
+            "description": "Respond to myself (rule 2)",
+            "path_info": "/foo/bar/quux",
+            "strings": [ "I'm feeling lucky" ],
+            "content_type": "text/plain; charset=UTF-8",
+            "response": "We're hearing voices now."
+        },
+        {
+            "number": 2,
+            "description": "Invoke myself",
+            "path_info": "/invoke-myself",
+            "content_type": "text/plain; charset=UTF-8",
+            "strings": [ "default" ],
+            "service": "http://192.168.56.11:4567/foo/bar/quux"
+        },
+        {
+            "number": 10,
+            "description": "Return nothing, by reading /dev/null",
+            "content_type": "text/plain; charset=UTF-8",
+            "strings": [ "dev", "null" ],
+            "file": "/dev/null"
+        },
+        {
+            "number": 20,
+            "description": "Non-existent file",
+            "strings": [ "filenotfound" ],
+            "file": "/unix"
+        },
+        {
+            "number": 30,
+            "description": "binary",
+            "content_type": "image/jpeg",
+            "strings": [ "marble" ],
+            "file": "/usr/share/backgrounds/tiles/Blkmarble.jpg"
         }
     ]
 }

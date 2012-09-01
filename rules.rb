@@ -4,20 +4,32 @@
 require 'java'
 require 'singleton'
 require 'rulesupport'
+require 'rule'
+require 'pp'
 require 'rubygems'
 require 'json'
-require 'pp'
 
+
+# An object to handle the current set of rules we are working with.
+# Supports adding/removing rules.
+# The dispatcher ties the various methods in this class to http paths
+# starting at /rules/.
+#
+# Note that this class is a singleton. Use `Rules.instance' to get
+# a reference to the singleton.
+#
 class Rules
     include Singleton
     include RuleSupport
 
     @@logger = Java::OrgSlf4j::LoggerFactory::getLogger(Rules.name)
 
+    attr_reader :rules, :rule_numbers
+
     def initialize
         @rules_lock = java.lang.Object.new # .synchronized only works with Java objects.
         @rules = {} # not an array, but a hash, where the key is the rule number.
-        @rules_source = {} # for storing the source code of the rule
+        @rule_numbers = [] # keep the rule numbers in an array, sorted.
         @@logger.info("Rules singleton initialized")
     end
 
@@ -36,16 +48,16 @@ class Rules
         rulesspec['rules'].each do |rulespec|
             valid, reason = *valid_json_rulespec(rulespec)
             if not valid then
-                @@logger.error("Invalid rulespec: {}", JSON.generate(rulespec))
+                @@logger.error("Invalid rulespec: {}", JSON.pretty_generate(rulespec))
                 raise 'Invalid rule found: ' + reason
             end
         end
 
         rulesspec['rules'].each do |rulespec|
-            rule = rule_from_json(rulespec, JSON.generate(rulespec))
+            rule = Rule.new(rulespec)
             @rules_lock.synchronized do
                 @rules[rulespec['number']] = rule
-                @rules_source[rulespec['number']] = JSON.generate(rulespec)
+                @rule_numbers = @rules.keys.sort
             end
         end
 
@@ -66,50 +78,60 @@ class Rules
             raise 'Rule is invalid - ' + reason
         end
 
-        rule = rule_from_json(rulespec, str)
+        rule = Rule.new(rulespec, str)
 
         @rules_lock.synchronized do
             @rules[rulespec['number']] = rule
-            @rules_source[rulespec['number']] = json_hash # storing the structure, not the
-                # real source (str).
+            @rule_numbers = @rules.keys.sort
         end
 
         true
     end
 
-    def delete(num)
+    def delete(param)
         ret = false
-        pp "Deleting rule #{num}"
-        if num.class != Fixnum then
-            raise "Parameter `num' must be an integer"
-        end
 
-        @rules_lock.synchronized do
-            if @rules_hash.has_key?(num) then
-                @rules.delete(num)
-                @rules_source.delete(num)
-                ret = true
+        @@logger.info('Deleting rules with spec: {}', param)
+        if param =~ /^-?[0-9]+$/ then
+            num = param.to_i
+            @rules_lock.synchronized do
+                if @rules.has_key?(num) then
+                    @rules.delete(num)
+                    @rule_numbers = @rules.keys.sort
+                    ret = true
+                end
             end
+        elsif param.downcase ==  'all' then
+            @rules_lock.synchronized do
+                @rules.clear
+                @rule_numbers = []
+            end
+            ret = true
         end
 
         ret
     end
 
-    def rules
-        @rules  # would it be wise to copy it here?
-            # perhaps unnecessary. The obj returned from
-            # this method must not be mutated.
-    end
+    def rules_as_json_string(param)
+        # TODO: return 404 if rule not found
+        rulespecs = []
 
-    def rules_as_json_string
-        obj = { 'rules' => [] }
-        @rules_lock.synchronized do
-            @rules_source.keys.sort.each do |k|
-                obj['rules'] << @rules_source[k]
+        if param =~ /^-?[0-9]*$/ then
+            num = param.to_i
+            if @rules.has_key?(num) then
+                rulespecs << @rules[num].rulespec
+            end
+        elsif param.downcase == 'all' then
+            @rules_lock.synchronized do
+                @rule_numbers.each do |rln|
+                    rulespecs << @rules[rln].rulespec
+                end
             end
         end
 
-        JSON.generate(obj)
+        ret = { 'rules' => rulespecs }
+        
+        JSON.pretty_generate(ret)
     end
 end
 

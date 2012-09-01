@@ -1,10 +1,19 @@
 # vim:set ts=8 sts=4 sw=4 et ai:
 
 require 'java'
+require 'net/http'
+require 'uri'
 require 'base64'
 require 'matchresult'
-require 'shimresponse'
+require 'response'
 
+# Not a class, but a module - a collection of functions
+# useful when executing rules.
+# This module is meant to be "included" by other modules
+# or classes, thereby "mixing-in" this functionality.
+#
+# See rule.rb and rules.rb for cases where this happens.
+#
 module RuleSupport
     # Checks the string `where' for each of the strings
     # in the array `what', in order.
@@ -28,7 +37,33 @@ module RuleSupport
         ret
     end
 
-    def process_shim_request(rule, shimreq)
+    # Do a http POST on the given URI
+    # TODO: Replace Ruby's net/http with
+    # Apache HttpComponents
+    def POST(uri, headers, body)
+        parsed_uri = URI.parse(uri)
+        http = Net::HTTP.new(parsed_uri.host, parsed_uri.port)
+        resp = http.post(parsed_uri.path, body, headers)
+
+        # TODO: handle redirects
+        if resp.code == '200' then
+            [ resp.code.to_i, resp.body, resp ]
+        else
+            [ resp.code.to_i, nil, resp ]
+        end
+    end
+
+    def GET(uri, headers)
+        parsed_uri = URI.parse(uri)
+        http = Net::HTTP.new(parsed_uri.host, parsed_uri.port)
+        resp = http.get(parsed_uri.path)
+        [ resp.code.to_i, resp.body, resp ]
+    end
+
+    # TODO: support other http methods for tunnel mode
+
+    def process_request(rule, req)
+        logger = Java::OrgSlf4j::LoggerFactory::getLogger('process_request')
         ret_data = nil
         ret_headers = {}
         ret_code = 500
@@ -52,19 +87,20 @@ module RuleSupport
                 ret_data = rule['response'].join('')
             end
 
-            ret_headers['Content-Type'] = content_type
             ret_code = 200
         elsif rule['file'] then
             begin
-                ret_data = open(rule['file'], 'r:' + content_encoding).read()
-                ret_headers['Content-Type'] = content_type
+                # TODO: binary?
+                ret_data = open(rule['file'], 'r:binary').read()
                 ret_code = 200
             rescue Exception => e
-                ret_code = 500
-                ret_data = e.to_s + "\r\n\r\n" + e.backtrace.join("\n") + "\r\n"
+                ret_code = 404
+                stacktrace = e.message + "\n\n" + e.backtrace.join("\n")
+                logger.warn("Error while reading fata from file {}, exception: {}", rule['file'], stacktrace)
+                msg = 'Error while reading from file ' + rule['file'] + "\n\n" + stacktrace
+                ret_data = msg
+                ret_headers['Content-Type'] = 'text/plain; charset=us-ascii'
                 ret_headers['X-Alecto-Error'] = e.message
-                # TODO: handle error
-                STDERR.puts e
             end
         elsif rule['response_base64'] then
             _ret = if rule['response'].class == String then
@@ -73,13 +109,25 @@ module RuleSupport
                 rule['response'].join('')
             end
             ret_data = Base64.decode64(_ret)
-            ret_headers['Content-Type'] = content_type
             ret_code = 200
-        # TODO - implement gzip support;
-        # base64 decode, wrap in StringIO, send to Zlib::GzipReader
-        elsif rule['service'] or rule['tunnel'] then
-            uri = rule['service'] || rule['tunnel']
-            ret_code, ret_data, http_resp = *passthrough({}, shimreq.body, uri)
+            # TODO - implement gzip support;
+            # base64 decode, wrap in StringIO, send to Zlib::GzipReader
+        elsif rule['service'] then
+            uri = rule['service']
+            if not req.query_string.nil? then
+                uri = uri + req.query_string
+            end
+            ret_code, ret_data, http_resp = *if req.request_method == 'POST' then
+                logger.info('Making POST request to {}', uri)
+                POST(uri, {}, req.body)
+            elsif req.request_method == 'GET' then
+                logger.info('Making GET request to {}', uri)
+                GET(uri, {})
+            else
+                logger.info('Unsupported request method {}', req.request_method)
+                [ 405, nil, nil ]
+            end
+
             # now tmp is like:
             # {"server"=>["Sun GlassFish Enterprise Server v2.1 Patch02"],
             #  "content-type"=>["application/xml;charset=UTF-8"],
@@ -94,12 +142,14 @@ module RuleSupport
             end
         end
 
-        ShimResponse.new(ret_code, content_encoding, ret_headers, ret_data)
+        if not ret_headers.has_key?('Content-Type') then
+            ret_headers['Content-Type'] = content_type
+        end
+        Response.new(ret_code, ret_headers, ret_data)
     end
 
 
     def valid_json_rulespec(rule)
-        # TODO - improve this
         if rule.nil? then
             return [ false, 'Null rulespec' ]
         end
@@ -108,66 +158,53 @@ module RuleSupport
             return [ false, 'Rule has no number' ]
         end
 
+        if rule['number'].class != Fixnum then
+            return [ false, 'Rule number must be an integer' ]
+        end
+
         if not rule.has_key?('description') then
             return [ false, 'Rule has no description' ]
         end
 
-        if not rule.has_key?('strings') then
+        if not rule.has_key?('strings') and not rule.has_key?('query_strings') then
             return [ false, 'Rule has no strings' ]
         end
 
-        if rule['strings'].class != Array then
-            return [ false, 'strings is not an Array' ]
+        if rule.has_key?('strings') then
+            if rule['strings'].class != Array then
+                return [ false, 'strings is not an Array' ]
+            end
+            if rule['strings'].length == 0 then
+                return [ false, 'strings is empty' ]
+            end
         end
 
-        if rule['strings'].length == 0 then
-            return [ false, 'strings is empty' ]
+        if rule.has_key?('query_strings') then
+            if rule['query_strings'].class != Array then
+                return [ false, 'query_strings is not an Array' ]
+            end
+            if rule['query_strings'].length == 0 then
+                return [ false, 'query_strings is empty' ]
+            end
         end
 
         if (not rule.has_key?('response')) and
            (not rule.has_key?('response_base64')) and
            (not rule.has_key?('file')) and
            (not rule.has_key?('service')) then
-           return [ false, 'Rule has no response/file/service' ]
+            return [ false, 'Rule has no response/file/service' ]
+        end
+
+        if rule.has_key?('service') and not rule.has_key?('path_info') then
+            return [ false, 'In proxy mode, path_info is required' ]
+        end
+
+        if rule.has_key?('service') then
+            if rule['strings'].length != 1 or rule['strings'][0] != 'default' then
+                return [ false, 'In proxy mode, "strings" must be [ "default" ]' ]
+            end
         end
 
         return [ true, 'Rule looks ok' ]
-    end
-
-
-    # Make a lambda that from a JSON object
-    def rule_from_json(rule, rule_str)
-        # Make a lambda that can apply this rule to a shim request.
-        # Rule is passed in as a mash object (hashie/mash).
-        rn = rule['number']
-        rd = rule['description']
-        rs = rule_str
-        # Should return a ShimResponse.
-        rule_lambda = lambda do |shimreq|
-
-            ret = MatchResult.new(false, nil, rn, rd, rs)
-
-            if rule['path_info'] and (rule['service'] or rule['tunnel']) and
-                (not shimreq.path_info.end_with?(rule.path_info)) then
-
-                # This rule is for fetching the real response from a backend
-                # service, but there was no path info in the http request.
-                # This rule can't do anything.
-
-                return ret
-            end
-
-            if rule['path_info'] and shimreq.path_info.end_with?(rule['path_info']) then
-                shimresp = process_shim_request(rule, shimreq)
-                ret = MatchResult.new(true, shimresp, rn, rd, rs)
-            elsif rule['strings'] and contains_in_order(shimreq.body, *(rule['strings'])) then
-                shimresp = process_shim_request(rule, shimreq)
-                ret = MatchResult.new(true, shimresp, rn, rd, rs)
-            end
-
-            ret
-        end
-
-        rule_lambda
     end
 end
