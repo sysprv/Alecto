@@ -88,7 +88,7 @@ appended to the `service` URI.
 # Other Instructions
 
 ## path\_info
-`path_info` is can be used when constructing proxy rules (delegating
+`path_info` is used when constructing proxy rules (delegating
 to a `service`) or to bind a a rule to a particular URI path.
 
 Each `service` rule must have `path_info` element defined. The URI
