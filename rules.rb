@@ -6,9 +6,8 @@ require 'singleton'
 require 'rulesupport'
 require 'rule'
 require 'pp'
-require 'rubygems'
 require 'json'
-
+require 'mimeheaders'
 
 # An object to handle the current set of rules we are working with.
 # Supports adding/removing rules.
@@ -65,8 +64,9 @@ class Rules
     end
 
     def add_or_update(str)
-        if str[0, 1] != '{' then
-            raise 'Only JSON is supported so far'
+        if str.nil? or str[0, 1] != '{' then
+            return [ 417, MimeHeaders.text_plain_utf8, "Invalid input." +
+                " A rule number (/rules/<integer>) and valid JSON body are required.\n" ]
         end
 
         json_hash = JSON.parse(str)
@@ -75,7 +75,7 @@ class Rules
         # all that went well...
         valid, reason = *valid_json_rulespec(rulespec)
         if not valid then
-            raise 'Rule is invalid - ' + reason
+            return [ 417, MimeHeaders.text_plain_utf8, "Rule is invalid: " + reason + "\n" ]
         end
 
         rule = Rule.new(rulespec, str)
@@ -85,20 +85,24 @@ class Rules
             @rule_numbers = @rules.keys.sort
         end
 
-        true
+        [ 200, MimeHeaders.text_plain_utf8, "Rule added/updated.\n" ]
     end
 
     def delete(param)
-        ret = false
-
         @@logger.info('Deleting rules with spec: {}', param)
+        if param.nil? then
+            return [ 417, MimeHeaders.text_plain_utf8,
+                "Invalid data - call with /rules/<integer>\n" ]
+        end
+
+        ret = nil
         if param =~ /^-?[0-9]+$/ then
             num = param.to_i
             @rules_lock.synchronized do
                 if @rules.has_key?(num) then
                     @rules.delete(num)
                     @rule_numbers = @rules.keys.sort
-                    ret = true
+                    ret = [ 200, MimeHeaders.text_plain_utf8, "Rule deleted\n" ]
                 end
             end
         elsif param.downcase ==  'all' then
@@ -106,7 +110,7 @@ class Rules
                 @rules.clear
                 @rule_numbers = []
             end
-            ret = true
+            ret = [ 200, MimeHeaders.text_plain_utf8, " All rules deleted\n" ]
         end
 
         ret
@@ -116,12 +120,12 @@ class Rules
         # TODO: return 404 if rule not found
         rulespecs = []
 
-        if param =~ /^-?[0-9]*$/ then
+        if not param.nil? and param =~ /^-?[0-9]*$/ then
             num = param.to_i
             if @rules.has_key?(num) then
                 rulespecs << @rules[num].rulespec
             end
-        elsif param.downcase == 'all' then
+        elsif param.nil? or param.downcase == 'all' then
             @rules_lock.synchronized do
                 @rule_numbers.each do |rln|
                     rulespecs << @rules[rln].rulespec
@@ -131,7 +135,7 @@ class Rules
 
         ret = { 'rules' => rulespecs }
         
-        JSON.pretty_generate(ret)
+        [ 200, MimeHeaders.application_json_utf8, JSON.pretty_generate(ret) ]
     end
 end
 

@@ -22,6 +22,7 @@ class Resolver
         "<?xml version='1.0'?><error>No matchers for request</error>\r\n")
 
     def Resolver.resolve(req)
+        @@logger.info("Running rules on {}", req.inspect)
         # go through each function, and return the response from the first one that matches.
         resp = nil
 

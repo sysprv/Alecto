@@ -22,9 +22,12 @@ class Dispatcher
     # string that follows the prefix.
     # F.ex. string_remainder('abc', 'ab') -> 'c'
     def Dispatcher.string_remainder(str, prefix_to_remove)
+        if prefix_to_remove.length > str.length then
+            return nil
+        end
         idx = str.index(prefix_to_remove)
         if idx.nil? then
-            return str
+            return nil
         else
             rmidx = idx + prefix_to_remove.length - 1
             return str[rmidx + 1, str.length - rmidx]
@@ -46,21 +49,18 @@ class Dispatcher
             [ 200, nil, nil ]
         elsif path_info.start_with?('/favicon.ico') then
             [ 204, nil, nil ] # 204 == no content
-        elsif path_info.start_with?('/rules/') then
+        elsif path_info.start_with?('/rules') then
             if method == 'GET' then
                 # ex.: GET /rules
-                [ 200, MimeHeaders.application_json_utf8,
-                    Rules.instance.rules_as_json_string(string_remainder(path_info, '/rules/')).to_s ]
+                Rules.instance.rules_as_json_string(string_remainder(path_info, '/rules/'))
             elsif method == 'POST' then
                 # ex.: POST /rules
-                [ 200, MimeHeaders.text_plain_utf8,
-                    Rules.instance.add_or_update(request_body) ]
+                Rules.instance.add_or_update(request.body)
             elsif method == 'DELETE' then
                 # ex.: DELETE /rules/10
                 # or
                 # DELETE /rules/all
-                [ 200, MimeHeaders.text_plain_utf8,
-                    Rules.instance.delete(string_remainder(path_info, '/rules/')) ]
+                Rules.instance.delete(string_remainder(path_info, '/rules/'))
             else
                 [ 417, MimeHeaders.text_plain_utf8,
                     'Unsupported method; supported methods are GET, POST and DELETE' ]
@@ -88,7 +88,8 @@ class Dispatcher
             resp = Resolver.resolve(request)
             [ resp.status, resp.headers, resp.body ]
         else
-            [ 417, MimeHeaders.text_plain_utf8, 'No route matched the request to ' + target ]
+            [ 417, MimeHeaders.text_plain_utf8,
+                "No route matched the #{request.request_method}, to #{request.path_info}" ]
         end
 
         # return...

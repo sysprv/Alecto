@@ -39,7 +39,7 @@ class JettyHandler < org.eclipse.jetty.server.handler.AbstractHandler
     # and Request and Response objects.
     #
     def handle(target, base_req, servlet_req, servlet_resp)
-        request = Request.fromServletRequest(servlet_req)
+        request = Request.new(servlet_req)
         response = Dispatcher.dispatch(request)
         set_servlet_response(response, servlet_resp)
         base_req.setHandled(true)

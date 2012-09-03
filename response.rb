@@ -34,7 +34,7 @@ class Response
 
     def initialize(status, headers, body)
         @status = status
-        @headers = headers
+        @headers = headers || {}
 
         # Set the CORS headers
         #
