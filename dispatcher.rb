@@ -37,7 +37,7 @@ class Dispatcher
     def Dispatcher.dispatch(request)
         method = request.request_method
         path_info = request.path_info
-        @@logger.info('Processing request on {}, method == {}', path_info, method)
+        @@logger.info('Processing request {}', request.summary)
 
         # decide
         status_code, headers, body = \
