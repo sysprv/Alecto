@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<!-- vim:set ts=8 sts=2 sw=2 et ai tw=132 wm=0: -->
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name='viewport' content='width=device-width' />
+<title>Alecto/rules</title>
+</head>
+<body>
+  <h1>Alecto / Rules</h1>
+  <hr/>
+  <p>Alecto allows you to manage rules written in JSON with a RESTful
+  API.</p>
+  <p>Viewing the current set of rules: <a
+    href="/rules/all">GET /rules/all</a></p>
+  <p/>
+  <p>Viewing a specific rule: GET &lt;Alecto URI&gt;/rules/&lt;rule number&gt;</p>
+  <blockquote>Example: <a
+      href="/rules/0">The 0th rule (if any)</a></blockquote>
+  <p/>
+  <p>Creating/replacing a rule: POST /rules</p>
+  <blockquote>Do a http POST on /rules, with the JSON rule specification in
+    the POST body.</blockquote>
+  <p/>
+  <p>Deleting a rule: DELETE /rules/&lt;rule number&gt;</p>
+  <blockquote>i.e. use the <a
+      href="http://en.wikipedia.org/wiki/DELETE_(HTTP)#Request_methods">DELETE http method</a>
+    on the &lt;Alecto URI&gt;/rules/&lt;rule number&gt; resource</blockquote>
+  <p/>
+  <p>Delete all rules: DELETE /rules/all</p>
+  <blockquote>i.e. use the DELETE http method on the &lt;Alecto URI&gt;/rules/all resource</blockquote>
+</body>
+</html>
