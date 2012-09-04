@@ -109,6 +109,11 @@ class Dispatcher
                 "No route matched the #{request.request_method}, to #{request.path_info}\n" ]
         end
 
+        # set some default cache headers
+        if method == 'GET' and status_code == 200 and not headers.has_key?('Cache-Control') then
+            headers['Cache-Control'] = 'max-age=30'
+        end
+
         # return...
         Response.new(status_code, headers, body)
     end
