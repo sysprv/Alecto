@@ -63,13 +63,8 @@ class Rules
         true
     end
 
-    def add_or_update(str)
-        if str.nil? or str.length < 2 then
-            return [ 417, MimeHeaders.text_plain_utf8, "Invalid input." +
-                " A rule number (/rules/<integer>) and valid JSON body are required.\n" ]
-        end
-
-        json_hash = JSON.parse(str)
+    def add_or_update(rulespec_str)
+        json_hash = JSON.parse(rulespec_str)
         rulespec = json_hash
 
         # all that went well...
@@ -110,7 +105,7 @@ class Rules
                 @rules.clear
                 @rule_numbers = []
             end
-            ret = [ 200, MimeHeaders.text_plain_utf8, " All rules deleted\n" ]
+            ret = [ 200, MimeHeaders.text_plain_utf8, "All rules deleted\n" ]
         end
 
         ret

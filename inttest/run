@@ -1,0 +1,36 @@
+#! /bin/bash
+
+set -e -u
+
+readonly alecto=http://127.0.0.1:4567
+
+# delete all
+curl -X DELETE $alecto/rules/all | grep 'All rules deleted'
+
+# add rule
+curl -X POST --data-binary @- $alecto/rules <<EOF | grep 'Rule added/updated'
+{
+	"number": 1,
+	"description": "rule 1",
+	"strings": [ "dead", "beef" ],
+	"response": "pass1"
+}
+EOF
+
+# test that rule
+curl -X POST --data-binary @- $alecto/test <<< 0xdeadbeef | grep pass1
+
+# add another rule to work on the query string
+curl -X POST --data-binary @- $alecto/rules <<EOF | grep 'Rule added/updated'
+{
+	"number": 2,
+	"description": "Test query string matching",
+	"query_strings": [ "dead", "beef" ],
+	"response": "pass2"
+}
+EOF
+
+curl -X POST "$alecto/test?dead&beef&" | grep pass2
+
+# GET
+curl "$alecto/test?dead&beef&" | grep pass2

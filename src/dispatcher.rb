@@ -6,6 +6,7 @@ require 'resolver'
 require 'request'
 require 'samplerequests'
 require 'mimeheaders'
+require 'helpmap'
 
 # This class takes care of dispatching to various code paths
 # depending on the input, which must be an instance of
@@ -47,6 +48,22 @@ class Dispatcher
             # and nothing is forbidden.
             # http://en.wikipedia.org/wiki/Alamut_(1938_novel)
             [ 200, nil, nil ]
+        elsif HelpMap.mappings.has_key?(path_info) and method == 'GET' then
+            # If this path_info should serve a help message from disk,
+            # do that...
+            begin
+                data = nil
+                open(HelpMap.mappings[path_info], 'r:UTF-8') do |help_f|
+                    data = help_f.read
+                end
+                if data.nil? or data.length == 0 then
+                    data = '(No data found)'
+                end
+                [ 200, MimeHeaders.text_html_utf8, data ]
+            rescue Exception => e
+                [ 500, MimeHeaders.text_plain_utf8, "Oops.. Something went wrong.\n" +
+                    e.message + "\n" + e.backtrace.join("\n") + "\n" ]
+            end
         elsif path_info.start_with?('/favicon.ico') then
             [ 204, nil, nil ] # 204 == no content
         elsif path_info.start_with?('/rules') then
@@ -63,12 +80,12 @@ class Dispatcher
                 Rules.instance.delete(string_remainder(path_info, '/rules/'))
             else
                 [ 417, MimeHeaders.text_plain_utf8,
-                    'Unsupported method; supported methods are GET, POST and DELETE' ]
+                    "Unsupported method; supported methods are GET, POST and DELETE\n" ]
             end
         elsif path_info.start_with?('/sample_requests') then
             if method != 'GET' then
                 # Method Not Allowed
-                [ 405, MimeHeaders.text_plain_utf8, 'Only GET is allowed on /sample_requests']
+                [ 405, MimeHeaders.text_plain_utf8, "Only GET is allowed on /sample_requests\n" ]
             elsif path_info == '/sample_requests/allrefs' then
                 [ 200, MimeHeaders.application_json_utf8, SampleRequests.allrefs ]
             elsif path_info.start_with?('/sample_requests/ref/') then
@@ -77,19 +94,19 @@ class Dispatcher
                 if not data.nil? then
                     [ 200, MimeHeaders.text_plain_utf8, data ]
                 else
-                    [ 404, MimeHeaders.text_plain_utf8, "Not found" ]
+                    [ 404, MimeHeaders.text_plain_utf8, "Not found\n" ]
                 end
             else
                 # Not Acceptable
-                [ 406, MimeHeaders.text_plain_utf8, 'Bad path.' +
-                    ' Try GET on /sample_requests/allrefs or /sample_requests/ref/[id]' ]
+                [ 406, MimeHeaders.text_plain_utf8, "Bad path." +
+                    " Try GET on /sample_requests/allrefs or /sample_requests/ref/[id]\n" ]
             end
         elsif method == 'POST' or method == 'GET' then
             resp = Resolver.resolve(request)
             [ resp.status, resp.headers, resp.body ]
         else
             [ 417, MimeHeaders.text_plain_utf8,
-                "No route matched the #{request.request_method}, to #{request.path_info}" ]
+                "No route matched the #{request.request_method}, to #{request.path_info}\n" ]
         end
 
         # return...
