@@ -2,7 +2,7 @@
 
 # Tell the JVM to include all jars in lib subdir,
 # after the current directory.
-CLASSPATH=".:lib/*"
+CLASSPATH="src:jarlib/*"
 
 export CLASSPATH
 export ALECTORULES=rules.json
@@ -11,4 +11,4 @@ echo Starting...
 exec java\
  -Xms256m -Xmx256m -noverify -client\
  -Dorg.eclipse.jetty.http.LEVEL=DEBUG\
- org.jruby.Main _main.rb
+ org.jruby.Main src/_main.rb

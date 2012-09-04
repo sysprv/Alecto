@@ -64,7 +64,7 @@ class Rules
     end
 
     def add_or_update(str)
-        if str.nil? or str[0, 1] != '{' then
+        if str.nil? or str.length < 2 then
             return [ 417, MimeHeaders.text_plain_utf8, "Invalid input." +
                 " A rule number (/rules/<integer>) and valid JSON body are required.\n" ]
         end
@@ -78,7 +78,7 @@ class Rules
             return [ 417, MimeHeaders.text_plain_utf8, "Rule is invalid: " + reason + "\n" ]
         end
 
-        rule = Rule.new(rulespec, str)
+        rule = Rule.new(rulespec)
 
         @rules_lock.synchronized do
             @rules[rulespec['number']] = rule
