@@ -44,8 +44,17 @@ def main
     handlers = HandlerList.new
     handlers.setHandlers([ request_log_handler, JettyHandler.new ])
 
+    port = 4567
+    env_port = ENV['ALECTO_PORT']
+    if not env_port.nil? and env_port =~ /^[1-9][0-9]*$/ then
+        n_env_port = env_port.to_i
+        if n_env_port > 0 and n_env_port < 65536 then
+            port = n_env_port
+        end
+    end
+
     logger.info('Creating Jetty server instance')
-    server = Server.new(4567)
+    server = Server.new(port)
     server.handler = handlers
     logger.info('Starting server')
     server.start
