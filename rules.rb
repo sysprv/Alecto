@@ -120,12 +120,12 @@ class Rules
         # TODO: return 404 if rule not found
         rulespecs = []
 
-        if not param.nil? and param =~ /^-?[0-9]*$/ then
+        if not param.nil? and param =~ /^-?[1-9][0-9]*$/ then
             num = param.to_i
             if @rules.has_key?(num) then
                 rulespecs << @rules[num].rulespec
             end
-        elsif param.nil? or param.downcase == 'all' then
+        elsif param.nil? or param == '' or param.downcase == 'all' then
             @rules_lock.synchronized do
                 @rule_numbers.each do |rln|
                     rulespecs << @rules[rln].rulespec
